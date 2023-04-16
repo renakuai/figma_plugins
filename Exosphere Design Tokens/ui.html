@@ -1,0 +1,527 @@
+<div class="container">
+
+  <div class="tabs">
+    <button class="tablinks tabactive" id="tabradius">Border Radius</button>
+    <button class="tablinks" id="tabpadding">Padding</button>
+    <button class="tablinks" id="tabspacing">Spacing</button>
+    <button class="tablinks" id="tabopacity">Opacity</button>
+  </div>
+
+  <div class="group radius">
+    <p class="small">Applicable on any frame, component, and rectangle.</p>
+    <input type="checkbox" id="mixed" name="mixed" value="mixed">
+    <label for="mixed" class="standard">
+      Set different border radiuses per corner
+    </label>
+
+    <div class="group same">
+      <label for="radius">Border Radius</label>
+      <div class="radio_group" id="radius">
+        <input type="radio" id="radius_0" name="radius" value="0" checked>
+        <label for="radius_0">none</label>
+      </div>
+      <button id="set_radius_same">Set Border Radius</button>
+    </div>
+
+    <div class=" group mixed">
+      <label for="radius_top_left">Top left</label>
+      <div class="radio_group" id="radius_top_left">
+        <input type="radio" id="radius_top_left_0" name="radius_top_left" value="0" checked>
+        <label for="radius_top_left_0">none</label>
+      </div>
+
+      <label for="radius_top_right">Top right</label>
+      <div class="radio_group" id="radius_top_right">
+        <input type="radio" id="radius_top_right_0" name="radius_top_right" value="0" checked>
+        <label for="radius_top_right_0">none</label>
+      </div>
+
+      <label for="radius_bottom_right">Bottom right</label>
+      <div class="radio_group" id="radius_bottom_right">
+        <input type="radio" id="radius_bottom_right_0" name="radius_bottom_right" value="0" checked>
+        <label for="radius_bottom_right_0">none</label>
+      </div>
+
+      <label for="radius_bottom_left">Bottom left</label>
+      <div class="radio_group" id="radius_bottom_left">
+        <input type="radio" id="radius_bottom_left_0" name="radius_bottom_left" value="0" checked>
+        <label for="radius_bottom_left_0">none</label>
+      </div>
+      <button id="set_radius">Set Border Radius</button>
+    </div>
+  </div>
+
+  <div class="group padding">
+    <p class="small">Applicable only on autolayout frames.</p>
+    <label for="padding_left">Left</label>
+    <div class="radio_group" id="padding_left">
+      <input type="radio" id="padding_left_0" name="padding_left" value="0" checked>
+      <label for="padding_left_0">none</label>
+    </div>
+
+    <label for="padding_right">Right</label>
+    <div class="radio_group" id="padding_right">
+      <input type="radio" id="padding_right_0" name="padding_right" value="0" checked>
+      <label for="padding_right_0">none</label>
+    </div>
+
+    <label for="padding_top">Top</label>
+    <div class="radio_group" id="padding_top">
+      <input type="radio" id="padding_top_0" name="padding_top" value="0" checked>
+      <label for="padding_top_0">none</label>
+    </div>
+
+    <label for="padding_bottom">Bottom</label>
+    <div class="radio_group" id="padding_bottom">
+      <input type="radio" id="padding_bottom_0" name="padding_bottom" value="0" checked>
+      <label for="padding_bottom_0">none</label>
+    </div>
+    <button id="set_padding">Set Padding</button>
+  </div>
+
+  <div class="group spacing">
+    <p class="small">Applicable only on auto-layout frames. Determines distance between children.</p>
+
+    <label for="spacing">Spacing</label>
+    <div class="radio_group" id="spacing">
+      <input type="radio" id="spacing_0" name="spacing" value="0" checked>
+      <label for="spacing_0">none</label>
+    </div>
+    <button id="set_spacing">Set Spacing</button>
+  </div>
+
+  <div class="group opacity">
+
+    <label for="opacity">Opacity</label>
+    <div class="radio_group" id="opacity">
+      <input type="radio" id="opacity_1" name="opacity" value="1" checked>
+      <label for="opacity_1">100%</label>
+    </div>
+    <button id="set_opacity">Set Opacity</button>
+
+  </div>
+
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+    .container {
+      --border: #CCCCCC;
+      --background-selected: #127B87;
+      --background-hover: #EFF7F6;
+      --border-action: #033D58;
+      --background-action: #033D58;
+      --background-action-hover: #4D7689;
+      --font-tertiary: #033D58;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', 'Arial', sans-serif
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      margin-top: 4px;
+      margin-bottom: 8px;
+    }
+
+    p.small {
+      font-size: 13px;
+    }
+
+    .padding {
+      display: none;
+    }
+
+    .spacing {
+      display: none;
+    }
+
+    .opacity {
+      display: none;
+    }
+
+    .group {
+      margin-top: 12px;
+    }
+
+    label {
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    label.standard {
+      font-weight: 500;
+    }
+
+    .radio_group {
+      margin-top: 6px;
+      margin-bottom: 10px;
+    }
+
+    .radio_group input[type="radio"] {
+      opacity: 0;
+      position: fixed;
+      width: 0;
+      margin: 0;
+    }
+
+    .radio_group label {
+      border-radius: 2px;
+      display: inline-block;
+      margin-right: -2px;
+      margin-bottom: 1px;
+      gap: 0;
+      padding: 6px 10px;
+      font-size: 12px;
+      font-weight: 500;
+      border: 2px solid var(--border);
+    }
+
+    .radio_group label:hover {
+      background-color: var(--background-hover);
+    }
+
+    .radio-toolbar input[type="radio"]:focus+label {
+      border: 2px solid var(--border);
+    }
+
+    .radio_group input[type="radio"]:checked+label {
+      border-color: 2px solid var(--background-selected);
+      color: var(--background-selected);
+      background-color: var(--background-hover)
+    }
+
+    button {
+      border: 1px solid var(--border-action);
+      color: #fff;
+      padding: 6px 10px;
+      border-radius: 4px;
+      background-color: var(--background-action);
+      font-family: 'Inter', 'Arial', sans-serif
+    }
+
+    button:hover {
+      background-color: var(--background-action-hover);
+      border-color: var(--background-action-hover)
+    }
+
+    .tabs {
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 2px;
+      position: sticky;
+      top: 0;
+      margin-top: 0;
+      background-color: #fff;
+      overflow: auto;
+      white-space: nowrap;
+    }
+
+    button.tablinks {
+      color: #000;
+      background-color: #fff;
+      border: none;
+      border-radius: 0px;
+      font-weight: 600;
+      font-size: 13px;
+      padding-right: 10px;
+      padding-left: 10px;
+      padding-top: 8px;
+      padding-bottom: 12px;
+    }
+
+
+    button.tabactive {
+      border-bottom: 3px solid var(--border-action);
+    }
+
+    button.tablinks:hover {
+      background-color: var(--background-hover);
+    }
+
+    .mixed {
+      display: none;
+    }
+  </style>
+
+  <script>
+    //tokens JSON
+    const tokensJSON = {
+      "radius": {
+        "small": 0.125,
+        "standard": 0.3125,
+        "large": 0.625,
+        "x-large": 1.5625,
+        "circle": 50
+      },
+      "spacing": {
+        "4x-small": 0.0625,
+        "3x-small": 0.125,
+        "2x-small": 0.25,
+        "x-small": 0.5,
+        "small": 0.75,
+        "standard": 1,
+        "medium": 1.25,
+        "large": 1.5,
+        "x-large": 2,
+        "2x-large": 3,
+        "3x-large": 4,
+        "4x-large": 4.5,
+        "5x-large": 6
+      },
+      "opacity": {
+        "1": 0.10,
+        '2': 0.15,
+        '3': 0.4,
+        '5': 0.6,
+        '6': 0.75
+      }
+    }
+
+    //functions
+    function convertToPx(val) {
+      return (+val) * 16
+    }
+
+    function convertToPercent(val) {
+      return (+val) * 100
+    }
+
+
+    //populate radio buttons with tokens
+    const radius_top_left = document.getElementById('radius_top_left');
+    const radius_top_right = document.getElementById('radius_top_right');
+    const radius_bottom_right = document.getElementById('radius_bottom_right');
+    const radius_bottom_left = document.getElementById('radius_bottom_left');
+    const radius_same = document.getElementById('radius');
+
+    const padding_top = document.getElementById('padding_top');
+    const padding_right = document.getElementById('padding_right');
+    const padding_bottom = document.getElementById('padding_bottom');
+    const padding_left = document.getElementById('padding_left');
+
+    const opacity = document.getElementById('opacity');
+
+    const spacing = document.getElementById('spacing');
+
+
+    for (const prop in tokensJSON.radius) {
+      const val = tokensJSON.radius[prop];
+      if (prop === 'circle') {
+
+        radius_top_left.innerHTML = radius_top_left.innerHTML + `<input type="radio" id="radius_top_left_${val}" name="radius_top_left" value="999" >
+      <label for="radius_top_left_${val}">${val}%</label>`
+
+        radius_top_right.innerHTML = radius_top_right.innerHTML + `<input type="radio" id="radius_top_right_${val}" name="radius_top_right" value="999" >
+      <label for="radius_top_right_${val}">${val}%</label>`
+
+        radius_bottom_right.innerHTML = radius_bottom_right.innerHTML + `<input type="radio" id="radius_bottom_right_${val}" name="radius_bottom_right" value="999" >
+      <label for="radius_bottom_right_${val}">${val}%</label>`
+
+        radius_bottom_left.innerHTML = radius_bottom_left.innerHTML + `<input type="radio" id="radius_bottom_left_${val}" name="radius_bottom_left" value="999" >
+      <label for="radius_bottom_left_${val}">${val}%</label>`
+
+        radius_same.innerHTML = radius_same.innerHTML + `<input type="radio" id="radius_${val}" name="radius" value="999" >
+      <label for="radius_${val}">${val}%</label>`
+      }
+      else {
+        radius_top_left.innerHTML = radius_top_left.innerHTML + `<input type="radio" id="radius_top_left_${val}" name="radius_top_left" value="${convertToPx(val)}" >
+      <label for="radius_top_left_${val}">${convertToPx(val)}px</label>`
+
+        radius_top_right.innerHTML = radius_top_right.innerHTML + `<input type="radio" id="radius_top_right_${val}" name="radius_top_right" value="${convertToPx(val)}" >
+      <label for="radius_top_right_${val}">${convertToPx(val)}px</label>`
+
+        radius_bottom_right.innerHTML = radius_bottom_right.innerHTML + `<input type="radio" id="radius_bottom_right_${val}" name="radius_bottom_right" value="${convertToPx(val)}" >
+      <label for="radius_bottom_right_${val}">${convertToPx(val)}px</label>`
+
+        radius_bottom_left.innerHTML = radius_bottom_left.innerHTML + `<input type="radio" id="radius_bottom_left_${val}" name="radius_bottom_left" value="${convertToPx(val)}" >
+      <label for="radius_bottom_left_${val}">${convertToPx(val)}px</label>`
+
+        radius_same.innerHTML = radius_same.innerHTML + `<input type="radio" id="radius_${val}" name="radius" value="${convertToPx(val)}" >
+      <label for="radius_${val}">${convertToPx(val)}px</label>`
+      }
+    }
+
+    for (const prop in tokensJSON.spacing) {
+      const val = tokensJSON.spacing[prop];
+      padding_right.innerHTML = padding_right.innerHTML + `<input type="radio" id="padding_${val}" name="padding_right" value="${convertToPx(val)}" >
+      <label for="padding_${val}">${convertToPx(val)}px</label>`
+
+      padding_top.innerHTML = padding_top.innerHTML + `<input type="radio" id="padding_top_${val}" name="padding_top" value="${convertToPx(val)}" >
+      <label for="padding_top_${val}">${convertToPx(val)}px</label>`
+
+      padding_bottom.innerHTML = padding_bottom.innerHTML + `<input type="radio" id="padding_bottom_${val}" name="padding_bottom" value="${convertToPx(val)}" >
+      <label for="padding_bottom_${val}">${convertToPx(val)}px</label>`
+
+      padding_left.innerHTML = padding_left.innerHTML + `<input type="radio" id="padding_left_${val}" name="padding_left" value="${convertToPx(val)}" >
+      <label for="padding_left_${val}">${convertToPx(val)}px</label>`
+    }
+
+    for (const prop in tokensJSON.opacity) {
+      const val = tokensJSON.opacity[prop];
+      opacity.innerHTML = opacity.innerHTML + `<input type="radio" id="opacity_${val}" name="opacity" value="${val}" >
+      <label for="opacity_${val}">${convertToPercent(val)}%</label>`
+    }
+
+    for (const prop in tokensJSON.spacing) {
+      const val = tokensJSON.spacing[prop];
+      spacing.innerHTML = spacing.innerHTML + `<input type="radio" id="spacing_${val}" name="spacing" value="${convertToPx(val)}" >
+      <label for="spacing_${val}">${convertToPx(val)}px</label>`
+    }
+
+    //tab hiding / showing behavior
+    const padding = document.querySelector('.padding');
+    const radius = document.querySelector('.radius');
+    const opacityContent = document.querySelector('.opacity');
+    const spacingContent = document.querySelector('.spacing');
+
+
+    const tabpadding = document.getElementById('tabpadding');
+    const tabradius = document.getElementById('tabradius');
+    const tabopacity = document.getElementById('tabopacity');
+    const tabspacing = document.getElementById('tabspacing');
+
+
+    tabpadding.onclick = () => {
+      padding.style.display = "block";
+      radius.style.display = "none";
+      opacityContent.style.display = 'none';
+      spacingContent.style.display = 'none'
+
+      tabpadding.className = 'tablinks tabactive'
+      tabradius.className = 'tablinks'
+      tabopacity.className = 'tablinks'
+      tabspacing.className = 'tablinks'
+    }
+
+    tabradius.onclick = () => {
+      padding.style.display = "none";
+      radius.style.display = "block";
+      opacityContent.style.display = 'none'
+      spacingContent.style.display = 'none'
+
+
+      tabpadding.className = 'tablinks'
+      tabradius.className = 'tablinks tabactive'
+      tabopacity.className = 'tablinks'
+      tabspacing.className = 'tablinks'
+
+    }
+
+    tabopacity.onclick = () => {
+      padding.style.display = "none";
+      radius.style.display = "none";
+      opacityContent.style.display = 'block'
+      spacingContent.style.display = 'none'
+
+
+      tabpadding.className = 'tablinks'
+      tabradius.className = 'tablinks'
+      tabopacity.className = 'tablinks tabactive'
+      tabspacing.className = 'tablinks'
+
+    }
+
+    tabspacing.onclick = () => {
+      padding.style.display = "none";
+      radius.style.display = "none";
+      opacityContent.style.display = 'none'
+      spacingContent.style.display = 'block'
+
+
+      tabpadding.className = 'tablinks'
+      tabradius.className = 'tablinks'
+      tabopacity.className = 'tablinks'
+      tabspacing.className = 'tablinks tabactive'
+
+    }
+
+    //hiding + showing mixed border radius
+    const radio_mixed = document.querySelector('input[name="mixed"]');
+    const mixed_group = document.querySelector('.mixed');
+    const same_group = document.querySelector('.same');
+
+    radio_mixed.onclick = () => {
+      if (radio_mixed.checked) {
+        console.log('checked')
+        mixed_group.style.display = 'block'
+        same_group.style.display = 'none'
+      }
+      else {
+        mixed_group.style.display = 'none'
+        same_group.style.display = 'block'
+      }
+    }
+
+
+    //setting attributes via button click
+    document.getElementById('set_radius').onclick = () => {
+      const radius_top_left = document.querySelector('input[name="radius_top_left"]:checked').value;
+      const radius_top_right = document.querySelector('input[name="radius_top_right"]:checked').value;
+      const radius_bottom_right = document.querySelector('input[name="radius_bottom_right"]:checked').value;
+      const radius_bottom_left = document.querySelector('input[name="radius_bottom_left"]:checked').value;
+
+      parent.postMessage(
+        {
+          pluginMessage: {
+            type: 'set_radius', radius_top_left, radius_top_right, radius_bottom_right, radius_bottom_left
+          }
+        }, '*')
+    }
+
+    document.getElementById('set_radius_same').onclick = () => {
+      const radius_same = document.querySelector('input[name="radius"]:checked').value;
+      const radius_top_left = radius_same;
+      const radius_bottom_left = radius_same;
+      const radius_top_right = radius_same;
+      const radius_bottom_right = radius_same;
+
+      parent.postMessage(
+        {
+          pluginMessage: {
+            type: 'set_radius', radius_top_left, radius_top_right, radius_bottom_right, radius_bottom_left
+          }
+        }, '*')
+    }
+
+    document.getElementById('set_padding').onclick = () => {
+      const padding_right = document.querySelector('input[name="padding_right"]:checked').value;
+      const padding_top = document.querySelector('input[name="padding_top"]:checked').value;
+      const padding_bottom = document.querySelector('input[name="padding_bottom"]:checked').value;
+      const padding_left = document.querySelector('input[name="padding_left"]:checked').value;
+
+      parent.postMessage(
+        {
+          pluginMessage: {
+            type: 'set_padding', padding_right, padding_left, padding_top, padding_bottom
+          }
+        }, '*')
+    }
+
+    document.getElementById('set_opacity').onclick = () => {
+      const opacity = document.querySelector('input[name="opacity"]:checked').value;
+
+      parent.postMessage(
+        {
+          pluginMessage: {
+            type: 'set_opacity', opacity
+          }
+        }, '*')
+    }
+
+    document.getElementById('set_spacing').onclick = () => {
+      const spacing = document.querySelector('input[name="spacing"]:checked').value;
+
+      parent.postMessage(
+        {
+          pluginMessage: {
+            type: 'set_spacing', spacing
+          }
+        }, '*')
+    }
+
+
+  </script>
