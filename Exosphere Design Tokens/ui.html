@@ -125,7 +125,6 @@
     <div class="radio_group" id="font_line_height">
 
     </div>
-    <div class="error"></div>
 
     <button id="set_font">Set Font</button>
 
@@ -176,12 +175,6 @@
 
   .font {
     display: none;
-  }
-
-  .error {
-    color: red;
-    font-size: 12px;
-    margin-bottom: 8px;
   }
 
   .group {
@@ -455,7 +448,7 @@
       for (const prop in tokensJSON.font[cat]) {
         const val = tokensJSON.font[cat][prop];
         if (val === 'Poppins') {
-          font_family.innerHTML = font_family.innerHTML + `<input type="radio" id="font_family_${val}" name="font_family" value="${val}" >
+          font_family.innerHTML = font_family.innerHTML + `<input type="radio" id="font_family_${val}" name="font_family" value="${val}" checked>
       <label for="font_family_${val}">${val} (Heading)</label>`
         }
         else {
@@ -469,7 +462,7 @@
       for (const prop in tokensJSON.font[cat]) {
         const val = tokensJSON.font[cat][prop];
         if (val === 400) {
-          font_weight.innerHTML = font_weight.innerHTML + `<input type="radio" id="font_weight_${val}" name="font_weight" value="${val}" >
+          font_weight.innerHTML = font_weight.innerHTML + `<input type="radio" id="font_weight_${val}" name="font_weight" value="${val}" checked>
           <label for="font_weight_${val}">Regular</label>`
         }
         if (val === 600) {
@@ -485,15 +478,22 @@
     if (cat === 'size') {
       for (const prop in tokensJSON.font[cat]) {
         const val = tokensJSON.font[cat][prop];
-        font_size.innerHTML = font_size.innerHTML + `<input type="radio" id="font_size_${val}" name="font_size" value="${Math.floor(convertToPx(val))}" >
+        if (val === 0.75) {
+          font_size.innerHTML = font_size.innerHTML + `<input type="radio" id="font_size_${val}" name="font_size" value="${Math.floor(convertToPx(val))}" checked >
       <label for="font_size_${val}">${Math.floor(convertToPx(val))}px</label>`
+        }
+        else {
+          font_size.innerHTML = font_size.innerHTML + `<input type="radio" id="font_size_${val}" name="font_size" value="${Math.floor(convertToPx(val))}" >
+      <label for="font_size_${val}">${Math.floor(convertToPx(val))}px</label>`
+
+        }
       }
     }
     if (cat === 'line-height') {
       for (const prop in tokensJSON.font[cat]) {
         const val = tokensJSON.font[cat][prop];
         if (val === 1.35) {
-          font_line_height.innerHTML = font_line_height.innerHTML + `<input type="radio" id="font_line_height_${val}" name="font_line_height" value="${Math.floor(convertToPx(val))}" >
+          font_line_height.innerHTML = font_line_height.innerHTML + `<input type="radio" id="font_line_height_${val}" name="font_line_height" value="${Math.floor(convertToPx(val))}" checked>
       <label for="font_line_height_${val}">${Math.floor(convertToPx(val))}px (Heading)</label>`
         }
         else {
@@ -669,24 +669,19 @@
   }
 
   document.getElementById('set_font').onclick = () => {
+    const error = document.querySelector('.error');
 
-    if (!document.querySelector('input[name="font_family"]').checked || !document.querySelector('input[name="font_size"]').checked || !document.querySelector('input[name="font_weight"]').checked || !document.querySelector('input[name="font_line_height"]').checked) {
-      const error = document.querySelector('.error');
-      error.textContent = 'You must select something in each category.'
-    }
-    else {
-      const font_family = document.querySelector('input[name="font_family"]:checked').value;
-      const font_size = document.querySelector('input[name="font_size"]:checked').value;
-      const font_weight = document.querySelector('input[name="font_weight"]:checked').value;
-      const font_line_height = document.querySelector('input[name="font_line_height"]:checked').value;
+    const font_family = document.querySelector('input[name="font_family"]:checked').value;
+    const font_size = document.querySelector('input[name="font_size"]:checked').value;
+    const font_weight = document.querySelector('input[name="font_weight"]:checked').value;
+    const font_line_height = document.querySelector('input[name="font_line_height"]:checked').value;
 
-      parent.postMessage(
-        {
-          pluginMessage: {
-            type: 'set_font', font_family, font_size, font_weight, font_line_height
-          }
-        }, '*')
-    }
+    parent.postMessage(
+      {
+        pluginMessage: {
+          type: 'set_font', font_family, font_size, font_weight, font_line_height
+        }
+      }, '*')
 
   }
 
