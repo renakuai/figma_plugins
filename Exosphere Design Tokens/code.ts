@@ -59,6 +59,78 @@ figma.ui.onmessage = msg => {
       }
     }
   }
+
+
+  if (msg.type === 'set_font') {
+    const selection = figma.currentPage.selection;
+    for (let i = 0; i < selection.length; i++) {
+      if (selection[i].type === "TEXT") {
+
+        let font_weight = '';
+        if (+msg.font_weight === 400) {
+          font_weight = 'Regular'
+        }
+        if (+msg.font_weight === 600) {
+          font_weight = 'SemiBold'
+        }
+        if (+msg.font_weight === 700) {
+          font_weight = 'Bold'
+        }
+
+        const myFontLoadingFunction = async () => {
+          await figma.loadFontAsync({
+            family: 'Poppins',
+            style: 'Regular'
+          })
+          await figma.loadFontAsync({
+            family: 'Poppins',
+            style: 'SemiBold'
+          })
+
+          await figma.loadFontAsync({
+            family: 'Poppins',
+            style: 'Bold'
+          })
+          await figma.loadFontAsync({
+            family: 'Open Sans',
+            style: 'Regular'
+          })
+          await figma.loadFontAsync({
+            family: 'Open Sans',
+            style: 'SemiBold'
+          })
+
+          await figma.loadFontAsync({
+            family: 'Open Sans',
+            style: 'Bold'
+          })
+
+          console.log('Loading fonts')
+
+        }
+
+        const fontFunction = () => {
+          console.log('Fonts loaded')
+
+          selection[i].fontName = {
+            family: msg.font_family,
+            style: font_weight
+          }
+
+          selection[i].fontSize = +msg.font_size;
+          selection[i].lineHeight = {
+            value: + msg.font_line_height,
+            unit: "PIXELS"
+          }
+
+        }
+        myFontLoadingFunction().then(() => {
+          fontFunction()
+        })
+      }
+    }
+  }
+
   // Make sure to close the plugin when you're done. Otherwise the plugin will
   // keep running, which shows the cancel button at the bottom of the screen.
 };
