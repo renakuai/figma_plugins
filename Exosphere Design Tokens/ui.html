@@ -454,8 +454,15 @@
     if (cat === 'family') {
       for (const prop in tokensJSON.font[cat]) {
         const val = tokensJSON.font[cat][prop];
-        font_family.innerHTML = font_family.innerHTML + `<input type="radio" id="font_family_${val}" name="font_family" value="${val}" >
-      <label for="font_family_${val}">${val}</label>`
+        if (val === 'Poppins') {
+          font_family.innerHTML = font_family.innerHTML + `<input type="radio" id="font_family_${val}" name="font_family" value="${val}" >
+      <label for="font_family_${val}">${val} (Heading)</label>`
+        }
+        else {
+          font_family.innerHTML = font_family.innerHTML + `<input type="radio" id="font_family_${val}" name="font_family" value="${val}" >
+      <label for="font_family_${val}">${val} (Body)</label>`
+        }
+
       }
     }
     if (cat === 'weight') {
@@ -485,8 +492,15 @@
     if (cat === 'line-height') {
       for (const prop in tokensJSON.font[cat]) {
         const val = tokensJSON.font[cat][prop];
-        font_line_height.innerHTML = font_line_height.innerHTML + `<input type="radio" id="font_line_height_${val}" name="font_line_height" value="${Math.floor(convertToPx(val))}" >
-      <label for="font_line_height_${val}">${Math.floor(convertToPx(val))}px</label>`
+        if (val === 1.35) {
+          font_line_height.innerHTML = font_line_height.innerHTML + `<input type="radio" id="font_line_height_${val}" name="font_line_height" value="${Math.floor(convertToPx(val))}" >
+      <label for="font_line_height_${val}">${Math.floor(convertToPx(val))}px (Heading)</label>`
+        }
+        else {
+          font_line_height.innerHTML = font_line_height.innerHTML + `<input type="radio" id="font_line_height_${val}" name="font_line_height" value="${Math.floor(convertToPx(val))}" >
+      <label for="font_line_height_${val}">${Math.floor(convertToPx(val))}px (Body)</label>`
+        }
+
       }
     }
   }
